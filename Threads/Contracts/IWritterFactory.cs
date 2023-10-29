@@ -1,7 +1,9 @@
-﻿namespace Threads.Contracts
+﻿using Threads.Enums;
+
+namespace Threads.Contracts
 {
     public interface IWritterFactory
     {
-        void Write(string color, string message);
+        void Write(AllowedColors color, string message);
     }
 }

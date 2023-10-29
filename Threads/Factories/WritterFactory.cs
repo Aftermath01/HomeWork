@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using Threads.Contracts;
+using Threads.Enums;
 using Threads.Writters;
 
 namespace Threads.Factories
@@ -8,18 +9,18 @@ namespace Threads.Factories
     public class WritterFactory : IWritterFactory
     {
         private static Mutex mutex = new Mutex();
-        private readonly Dictionary<string, IWritter> _writters;
+        private readonly Dictionary<AllowedColors, IWritter> _writters;
 
         public WritterFactory()
         {
-            _writters = new Dictionary<string, IWritter>
+            _writters = new Dictionary<AllowedColors, IWritter>
             {
-                { "cyan", new CyanWritter() },
-                { "gray", new GrayWritter() }
+                { AllowedColors.Cyan, new CyanWritter() },
+                { AllowedColors.Gray, new GrayWritter() }
             };
         }
 
-        public void Write(string color, string message)
+        public void Write(AllowedColors color, string message)
         {
             try
             {

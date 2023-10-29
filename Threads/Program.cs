@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Threads.Contracts;
+using Threads.Enums;
 using Threads.ThreadWorkers;
 
 namespace Threads
@@ -16,8 +17,8 @@ namespace Threads
             {
                 IThreadPool threadPool = new ThreadPool(tokenSource);
 
-                threadPool.AddThread(new ThreadWorker("cyan", "Thread1", 100));
-                threadPool.AddThread(new ThreadWorker("gray", "Thread2", 200));
+                threadPool.AddThread(new ThreadWorker(AllowedColors.Cyan, "Thread1", 100));
+                threadPool.AddThread(new ThreadWorker(AllowedColors.Gray, "Thread2", 200));
                 threadPool.StartAllThreads();
 
                 Task consoleKeyTask = Task.Run(() => { ThreadInterrupter.CancelOnKeyPress(tokenSource); });
